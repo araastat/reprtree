@@ -25,6 +25,7 @@ as.tree <- function(gTree,rforest){
   fr$var <- as.character(gTree[,"split var"])
   fr$var[is.na(fr$var)] <- '<leaf>'
   fr$n <- fr$dev <- rep(0,length(fr$var))
+  fr$yval <- gTree[,'prediction']
   splits <- cbind(cutleft=paste0('<', gTree[,"split point"]), 
                   cutright=paste0('>', gTree[,"split point"]))
   splits[!is.na(gTree[,'prediction']),] <- ""
@@ -35,6 +36,7 @@ as.tree <- function(gTree,rforest){
     fr$yprob = matrix(1/length(rforest$classes),nrow=nrow(fr), ncol=length(rforest$classes))
   }
   row.names(fr) <- strtoi(x,2)
+  fr <- fr[order(x),]
   
   newtr <- list()
   newtr$frame=fr

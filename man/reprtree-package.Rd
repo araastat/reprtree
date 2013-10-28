@@ -18,7 +18,6 @@ library(randomForest)
 library(tree)
 rforest <- randomForest(Species~., data=iris)
 reptree <- ReprTree(rforest, iris, metric='d2')
-plot(reptree[[1]]); text(reptree[[1]])
 }
 \references{
   M. Banerjee, Y. Ding and A-M Noone (2012) "Identifying

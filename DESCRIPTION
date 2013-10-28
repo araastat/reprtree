@@ -4,7 +4,7 @@ Title: Representative trees from ensembles
 Version: 0.1
 Date: 2013-10-27
 Author: Abhijit Dasgupta <abhijit.dasgupta@nih.gov>
-Maintainer: Abhijit Dasgupta <abhijit.dasgupta@nih.gov>
+Maintainer: Abhijit Dasgupta <adasgupta@araastat.com>
 License: MIT
 Description: This package implements the concept of representative trees from
     ensemble tree-based learners introduced by Banerjee, et al, (2012).
@@ -17,7 +17,8 @@ Depends:
     R (>= 2.12)
 Imports:
     randomForest,
-    tree
+    tree,
+    plotrix
 Enhances: randomForest
 Suggests:
     rpart,

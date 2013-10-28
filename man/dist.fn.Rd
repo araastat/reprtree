@@ -23,8 +23,9 @@
   mismatches between two vectors.
 }
 \examples{
+library(randomForest)
 rforest <- randomForest(Species~., data=iris)
-preds <- predict(rforest, newdata=iris, predict.all=T)
+preds <- predict(rforest, newdata=iris, predict.all=TRUE)
 d <- dist.fn(t(preds$individual), method='mismatch')
 }
 \keyword{dist}

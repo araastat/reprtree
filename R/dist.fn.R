@@ -13,8 +13,9 @@
 #' @keywords dist
 #' @export
 #' @examples
+#' library(randomForest)
 #' rforest <- randomForest(Species~., data=iris)
-#' preds <- predict(rforest, newdata=iris, predict.all=T)
+#' preds <- predict(rforest, newdata=iris, predict.all=TRUE)
 #' d <- dist.fn(t(preds$individual), method='mismatch')
 dist.fn <- function(x, method='mismatch',...){
   METHODS <- c("euclidean", "maximum", "manhattan", "canberra", 

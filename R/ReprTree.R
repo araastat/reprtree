@@ -18,7 +18,6 @@
 #' library(tree)
 #' rforest <- randomForest(Species~., data=iris)
 #' reptree <- ReprTree(rforest, iris, metric='d2')
-#' plot(reptree[[1]]); text(reptree[[1]])
 NULL
 
 
@@ -41,6 +40,7 @@ NULL
 #' @return A list object containing representations of the representative trees
 #'    conformable with the \code{tree} class. Names of the list give the indices
 #'    of the representative trees in the set of trees. 
+#' @import randomForest tree
 #' @export
 #' @references M. Banerjee, Y. Ding and A-M Noone (2012) "Identifying representative
 #'     trees from ensembles". Statistics in Medicine, 31(15):1601-1616.
@@ -49,7 +49,6 @@ NULL
 #' library(tree)
 #' rforest <- randomForest(Species~., data=iris)
 #' reptree <- ReprTree(rforest, iris, metric='d2')
-#' plot(reptree[[1]]); text(reptree[[1]])
 ReprTree <- function(rforest, newdata, metric='d2'){
   if(metric!='d2') stop('invalid metric!')
   require(randomForest)

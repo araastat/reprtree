@@ -7,6 +7,7 @@
 #' @return An object of class \code{tree}, which has a \code{frame} and sufficient
 #'     attributes to enable plotting
 as.tree <- function(gTree,rforest){
+  if(is.numeric(gTree[,'split var'])) stop("labelVar=T required")
   bl <- matrix("", nrow=nrow(gTree), ncol=3)
   for(row in 1:nrow(gTree)){
     if(row==1){
@@ -33,6 +34,7 @@ as.tree <- function(gTree,rforest){
   if(rforest$type=='classification'){
     fr$yprob = matrix(1/length(rforest$classes),nrow=nrow(fr), ncol=length(rforest$classes))
   }
+  print(x)
   row.names(fr) <- strtoi(x,2)
   
   newtr <- list()

@@ -1,0 +1,15 @@
+Package: reprtree
+Type: Package
+Title: Extracting and visualizing representative trees
+Version: 0.1
+Date: 2013-10-26
+Author: Abhijit Dasgupta <adasgupta@araastat.com>
+Maintainer: Abhijit Dasgupta <adasgupta@araastat.com>
+Description: This is a R package to determine representative trees from tree
+    ensembles as described in Banerjee, Ding, and Noone (2012) "Identifying
+    representative trees from ensembles", Statistics in Medicine
+    31(15):1601-1616.
+License: MIT
+Collate:
+    'ReprTree.R'
+    'plot.reprtree.R'

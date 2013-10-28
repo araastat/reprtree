@@ -7,10 +7,10 @@
 #' ensemble in general. This package currently implements the d2 metric of tree closeness
 #' (close in prediction) from Banerjee, et al
 #' 
+#' @name reprtree-package
 #' @references M. Banerjee, Y. Ding and A-M Noone (2012) "Identifying representative
 #'     trees from ensembles". Statistics in Medicine, 31(15):1601-1616.
-#' @import randomForest
-#' @import tree
+#' @import randomForest tree
 #' @docType package
 #' @name reprtree
 #' @examples

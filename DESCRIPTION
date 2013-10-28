@@ -19,3 +19,7 @@ Depends:
     tree,
     plotrix
 Enhances: randomForest
+Collate:
+    'ReprTree.R'
+    'functions.R'
+    'plot.reprtree.R'

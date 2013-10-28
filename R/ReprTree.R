@@ -53,16 +53,18 @@ NULL
 ReprTree <- function(rforest, newdata, metric='d2'){
   if(metric!='d2') stop('invalid metric!')
   require(randomForest)
+  print('Constructing distance matrix...')
   preds <- predict(rforest, newdata=newdata, predict.all=T)
   preds.indiv <- preds$individual
   d <- dist.fn(t(preds.indiv), method=ifelse(rforest$type=='classification',
                                              'mismatch',
                                              'euclidean'))
+  print('Finding representative trees...')
   D <- colMeans(d)
   index <- which(D==min(D))
   trees <- lapply(as.list(index), function(i) getTree(rforest, i, labelVar=TRUE))
   names(trees) <- as.character(index)
-#  trees <- lapply(trees, as.tree, rforest)
+  trees <- lapply(trees, as.tree, rforest)
   class(trees) <- c('reprtree','list')
   return(trees)
 }

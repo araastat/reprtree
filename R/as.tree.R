@@ -34,7 +34,6 @@ as.tree <- function(gTree,rforest){
   if(rforest$type=='classification'){
     fr$yprob = matrix(1/length(rforest$classes),nrow=nrow(fr), ncol=length(rforest$classes))
   }
-  print(x)
   row.names(fr) <- strtoi(x,2)
   
   newtr <- list()

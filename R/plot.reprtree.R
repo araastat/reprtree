@@ -19,7 +19,7 @@
 #' be visualized can be provided.
 plot.reprtree <- function(reptree, all=FALSE, index = ifelse(all,NULL, 1),
                           ncol=NULL, nrow=NULL){
-  if(class(reptree)!='reprtree') stop('Wrong class!')
+  if(is(reptree,'reprtree')) stop('Wrong class!')
   n <- length(reptree)
   if(all){
     if(is.null(ncol) & is.null(nrow)){

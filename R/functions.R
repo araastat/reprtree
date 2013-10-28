@@ -6,6 +6,8 @@
 #' @param rforest The randomForest object 
 #' @return An object of class \code{tree}, which has a \code{frame} and sufficient
 #'     attributes to enable plotting
+#' @S3method as tree
+
 as.tree <- function(gTree,rforest){
   if(is.numeric(gTree[,'split var'])) stop("labelVar=T required")
   bl <- matrix("", nrow=nrow(gTree), ncol=3)
@@ -64,7 +66,7 @@ dist.fn <- function(x, method='mismatch',...){
                "binary", "minkowski", "mismatch")
   method <- pmatch(method, METHODS)
   if(is.na(method)) stop("invalid distance method")
-  if(METHODS[method] !="mismatch") z <- dist(x,y, method=METHODS[method], ...)
+  if(METHODS[method] !="mismatch") z <- dist(x, method=METHODS[method], ...)
   z = matrix(0, nrow=nrow(x), ncol=nrow(x))
   for(k in 1:(nrow(x)-1)){
     for (l in (k+1):nrow(x)){

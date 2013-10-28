@@ -12,6 +12,7 @@
 #' @param main Should a title be placed on the plot (default TRUE)
 #' @param ... additional arguments to pass to text.tree. In particular, suppress node labels using \code{label=NULL}
 #' @export
+#' @S3method plot reprtree
 #' @section Details
 #' This plot function takes a \code{reprtree} object, and then plots a 
 #' single representative tree or a sequence of representative trees (using \code{all=T}.

@@ -1,4 +1,4 @@
 export(ReprTree)
-export(dist.fn)
+export(plot.reprtree)
 import(randomForest)
 import(tree)

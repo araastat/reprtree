@@ -2,18 +2,18 @@
 \alias{plot.reprtree}
 \title{Plotting representative trees}
 \usage{
-  plot.reprtree(reptree, all = FALSE,
-    index = ifelse(all, NULL, 1), ncol = NULL, nrow = NULL,
-    adj = 0.5, main = T, ...)
+  plot.reprtree(reptree, index = ifelse(all, NULL, 1),
+    all = F, ncol = NULL, nrow = NULL, adj = 0.5, main = T,
+    ...)
 }
 \arguments{
   \item{reptree}{An object of class \code{reprtree)}}
 
-  \item{all}{(logical) Do you want to create a panel of
-  plots?}
-
   \item{index}{The index of the reprtree object you want to
   plot}
+
+  \item{all}{(logical) Do you want to create a panel of
+  plots?}
 
   \item{ncol}{The number of columns in the plot panel
   (defaults to NULL)}

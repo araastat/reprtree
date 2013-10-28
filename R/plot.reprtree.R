@@ -4,8 +4,8 @@
 #' visualizing representative trees from an ensemble
 #' 
 #' @param reptree An object of class \code{reprtree)}
-#' @param all (logical) Do you want to create a panel of plots?
 #' @param index The index of the reprtree object you want to plot
+#' @param all (logical) Do you want to create a panel of plots?
 #' @param ncol The number of columns in the plot panel (defaults to NULL)
 #' @param nrow The number of rows in the plot panel (defaults to NULL)
 #' @param adj 
@@ -18,7 +18,7 @@
 #' 
 #' If only one tree needs to be visualized, the index of the reprtree object to
 #' be visualized can be provided.
-plot.reprtree <- function(reptree, all=FALSE, index = ifelse(all,NULL, 1),
+plot.reprtree <- function(reptree, index = ifelse(all,NULL, 1), all=F,
                           ncol=NULL, nrow=NULL,adj = 0.5, main=T, ...){
   require(plotrix)
   if(!is(reptree,'reprtree')) stop('Wrong class!')

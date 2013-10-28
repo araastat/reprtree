@@ -10,21 +10,12 @@ Description: This package implements the concept of representative trees from
     ensemble tree-based learners introduced by Banerjee, et al, (2012).
     Representative trees are, in some sense, trees in the ensemble which are on
     average the "closest" to all the other trees in the ensemble. Several trees
-    cana be representative of the ensemble in general. This package currently
+    can be representative of the ensemble in general. This package currently
     implements the d2 metric of tree closeness (close in prediction) from
     Banerjee, et al, 2012
 Depends:
-    R (>= 2.12)
-Imports:
+    R (>= 2.12),
     randomForest,
     tree,
     plotrix
 Enhances: randomForest
-Suggests:
-    rpart,
-    mvpart
-Collate:
-    'ReprTree.R'
-    'as.tree.R'
-    'dist.fn.R'
-    'plot.reprtree.R'

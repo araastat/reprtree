@@ -26,7 +26,7 @@ as.tree <- function(gTree,rforest){
   fr$n <- fr$dev <- rep(0,length(fr$var))
   splits <- cbind(cutleft=paste0('<', gTree[,"split point"]), 
                   cutright=paste0('>', gTree[,"split point"]))
-  splits[!is.na(gTree$prediction),] <- ""
+  splits[!is.na(gTree[,'prediction']),] <- ""
   fr <- as.data.frame(fr, stringsAsFactors=F)
   fr$splits <- splits
   x <- ifelse(fr$var=='<leaf>', bl[,3], gsub('.{1}$', '', bl[,1]))

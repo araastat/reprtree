@@ -8,6 +8,7 @@
 #' @param index The index of the reprtree object you want to plot
 #' @param ncol The number of columns in the plot panel (defaults to NULL)
 #' @param nrow The number of rows in the plot panel (defaults to NULL)
+#' @param ... additional arguments to pass to text.tree
 #' @section Details
 #' This plot function takes a \code{reprtree} object, and then either plots a 
 #' single representative tree or a panel of all the representative trees. If
@@ -18,7 +19,7 @@
 #' If only one tree needs to be visualized, the index of the reprtree object to
 #' be visualized can be provided.
 plot.reprtree <- function(reptree, all=FALSE, index = ifelse(all,NULL, 1),
-                          ncol=NULL, nrow=NULL){
+                          ncol=NULL, nrow=NULL, ...){
   if(!is(reptree,'reprtree')) stop('Wrong class!')
   n <- length(reptree)
   if(all){
@@ -35,11 +36,11 @@ plot.reprtree <- function(reptree, all=FALSE, index = ifelse(all,NULL, 1),
     par(mfrow=c(nrow, ncol))
     for(i in 1:n){
       plot(reptree[[i]], type='uniform', main=names(reptree)[i]) 
-      text(reptree[[i]])
+      text(reptree[[i]],...)
     }
     par(opar)
   } else {
     plot(reptree[[index]], type='uniform', main=names(reptree)[index]) 
-    text(reptree[[index]])
+    text(reptree[[index]],...)
   }
 }

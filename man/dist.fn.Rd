@@ -7,10 +7,10 @@
 \arguments{
   \item{x}{a numeric matrix or data frame}
 
-  \item{the}{distance measure to be used. This must be one
-  of "mismatch", "euclidean", "maximum", "manhattan",
-  "canberra", "binary" or "minkowski".  Any unambiguous
-  substring can be given}
+  \item{method}{the distance measure to be used. This must
+  be one of "mismatch", "euclidean", "maximum",
+  "manhattan", "canberra", "binary" or "minkowski".  Any
+  unambiguous substring can be given}
 
   \item{...}{additional arguments to be passed to the
   \code{dist} function}

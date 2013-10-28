@@ -21,8 +21,7 @@ Imports:
 Enhances: randomForest
 Suggests:
     rpart,
-    mvpart,
-    party
+    mvpart
 Collate:
     'ReprTree.R'
     'as.tree.R'

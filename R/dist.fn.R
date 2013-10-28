@@ -6,7 +6,7 @@
 #' mismatches between two vectors.
 #' 
 #' @param x a numeric matrix or data frame
-#' @param the distance measure to be used. This must be one of "mismatch",
+#' @param method the distance measure to be used. This must be one of "mismatch",
 #'      "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski".
 #'      Any unambiguous substring can be given
 #' @param ... additional arguments to be passed to the \code{dist} function
@@ -21,7 +21,6 @@ dist.fn <- function(x, method='mismatch',...){
                "binary", "minkowski", "mismatch")
   method <- pmatch(method, METHODS)
   if(is.na(method)) stop("invalid distance method")
-  print(METHODS[method])
   if(METHODS[method] !="mismatch") z <- dist(x,y, method=METHODS[method], ...)
   z = matrix(0, nrow=nrow(x), ncol=nrow(x))
   for(k in 1:(nrow(x)-1)){

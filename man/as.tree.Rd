@@ -6,6 +6,8 @@
 }
 \arguments{
   \item{gTree}{The results of a call to \code{getTree}}
+
+  \item{rforest}{The randomForest object}
 }
 \value{
   An object of class \code{tree}, which has a \code{frame}

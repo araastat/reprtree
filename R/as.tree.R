@@ -1,11 +1,11 @@
-# Convert the result of a getTree call to a format compatible with tree
-# 
-# This function takes the results of a \code{randomForest::getTree} call and 
-# converts the results to a form compatible with \code{tree}
-# @param gTree The results of a call to \code{getTree}
-# @param rforest The randomForest object 
-# @return An object of class \code{tree}, which has a \code{frame} and sufficient
-#     attributes to enable plotting
+#' Convert the result of a getTree call to a format compatible with tree
+#' 
+#' This function takes the results of a \code{randomForest::getTree} call and 
+#' converts the results to a form compatible with \code{tree}
+#' @param gTree The results of a call to \code{getTree}
+#' @param rforest The randomForest object 
+#' @return An object of class \code{tree}, which has a \code{frame} and sufficient
+#'     attributes to enable plotting
 as.tree <- function(gTree,rforest){
   if(is.numeric(gTree[,'split var'])) stop("labelVar=T required")
   bl <- matrix("", nrow=nrow(gTree), ncol=3)

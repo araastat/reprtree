@@ -27,6 +27,13 @@ as.tree <- function(gTree,rforest){
   fr$var[is.na(fr$var)] <- '<leaf>'
   fr$n <- fr$dev <- rep(0,length(fr$var))
   fr$yval <- gTree[,'prediction']
+  
+  # Need to work out split points based on classes of the splitting vars
+  classes <- attributes(rforest$terms)$dataClasses
+  blah <- cbind(fr$var, as.character(gTree[,'split point']), 
+                classes[fr$var])
+  
+  
   splits <- cbind(cutleft=paste0('<', gTree[,"split point"]), 
                   cutright=paste0('>', gTree[,"split point"]))
   splits[fr$var=='<leaf>',] <- ""
@@ -80,8 +87,13 @@ dist.fn <- function(x, method='mismatch',...){
   return(z)
 }
 
-int2bin <- function(x){
+int2bin <- function(x, reverse=F){
   y <- intToBits(x)
   yy <- paste(sapply(strsplit(paste(rev(y)),""),`[[`,2),collapse="")
-  gsub('^[0]+','',yy)
+  out <- gsub('^[0]+','',yy)
+  if(reverse){
+    bl <- rev(unlist(strsplit(out,'')))
+    out <- paste(bl, collapse='')
+  }
+  return(out)
 }

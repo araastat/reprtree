@@ -30,7 +30,8 @@ as.tree <- function(gTree,rforest){
   fr$yval <- gTree[,'prediction']
   splits <- cbind(cutleft=paste0('<', gTree[,"split point"]), 
                   cutright=paste0('>', gTree[,"split point"]))
-  splits[!is.na(gTree[,'prediction']),] <- ""
+  splits[fr$var=='<leaf>',] <- ""
+  
   fr <- as.data.frame(fr, stringsAsFactors=F)
   fr$splits <- splits
   x <- ifelse(fr$var=='<leaf>', bl[,3], gsub('.{1}$', '', bl[,1]))
@@ -66,13 +67,16 @@ dist.fn <- function(x, method='mismatch',...){
                "binary", "minkowski", "mismatch")
   method <- pmatch(method, METHODS)
   if(is.na(method)) stop("invalid distance method")
-  if(METHODS[method] !="mismatch") z <- dist(x, method=METHODS[method], ...)
+  if(METHODS[method] !="mismatch"){
+    z <- as.matrix(dist(x, method=METHODS[method], ...))
+  } else {
   z = matrix(0, nrow=nrow(x), ncol=nrow(x))
   for(k in 1:(nrow(x)-1)){
     for (l in (k+1):nrow(x)){
       z[k,l] <- mean(x[k,]!=x[l,])
       z[l,k] <- z[k,l]
     }}
-  dimnames(z)  <- list(dimnames(x)[[1]],dimnames(x)[[1]])
+  }
+   dimnames(z)  <- list(dimnames(x)[[1]],dimnames(x)[[1]])
   return(z)
 }

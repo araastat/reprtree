@@ -49,6 +49,7 @@ labelBG <- function(tr){
   nodes <- as.integer(row.names(tr$frame))
   left.child <- match(2*nodes, nodes)
   rows <- tree:::labels.tree(tr)[left.child]
+  rows <- gsub('NA,','',rows)
   ind <- !is.na(left.child)
   boxed.labels(xy$x[ind],xy$y[ind]+0.3*charht, rows[ind] , border=F, bg='white',
                cex=0.8, xpad=0.5, ypad=1)

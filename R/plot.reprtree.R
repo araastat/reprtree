@@ -153,7 +153,7 @@ text.tree <- function (x, splits = TRUE, label = "yval", all = FALSE, pretty = N
   if (splits) {
     node <- as.integer(row.names(frame))
     left.child <- match(2 * node, node)
-    rows <- labels.tree(x, pretty = pretty)[left.child]
+    rows <- tree:::labels.tree(x, pretty = pretty)[left.child]
     ind <- !is.na(rows)
     text(xy$x[ind], xy$y[ind] + 0.5 * charht, rows[ind], 
          adj = adj, ...)

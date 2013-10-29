@@ -6,7 +6,7 @@
 #' @param rforest The randomForest object 
 #' @return An object of class \code{tree}, which has a \code{frame} and sufficient
 #'     attributes to enable plotting
-as.tree <- function(gTree,rforest){
+as.tree <- function(gTree,rforest,max.depth=3){
   if(is.numeric(gTree[,'split var'])) stop("labelVar=T required")
   bl <- matrix("", nrow=nrow(gTree), ncol=3)
   for(row in 1:nrow(gTree)){

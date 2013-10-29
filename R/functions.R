@@ -7,7 +7,6 @@
 #' @return An object of class \code{tree}, which has a \code{frame} and sufficient
 #'     attributes to enable plotting
 #' @S3method as tree
-
 as.tree <- function(gTree,rforest){
   if(is.numeric(gTree[,'split var'])) stop("labelVar=T required")
   bl <- matrix("", nrow=nrow(gTree), ncol=3)
@@ -79,4 +78,10 @@ dist.fn <- function(x, method='mismatch',...){
   }
    dimnames(z)  <- list(dimnames(x)[[1]],dimnames(x)[[1]])
   return(z)
+}
+
+int2bin <- function(x){
+  y <- intToBits(x)
+  yy <- paste(sapply(strsplit(paste(rev(y)),""),`[[`,2),collapse="")
+  gsub('^[0]+','',yy)
 }

@@ -1,5 +1,6 @@
-S3method(plot,reprtree)
-export(ReprTree)
 export(plot.reprtree)
+export(ReprTree)
 import(randomForest)
 import(tree)
+S3method(plot,reprtree)
+S3method(text,tree)

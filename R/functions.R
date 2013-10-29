@@ -33,14 +33,15 @@ as.tree <- function(gTree,rforest){
   blah <- data.frame(var=fr$var, splits=as.character(gTree[,'split point']), 
                 classes=classes[fr$var], stringsAsFactors=F)
   index <- which(blah$classes=='factor' & !is.na(blah$classes))
-  blah$splits[index] <- 
-  blah$splits <- ifelse(blah$classes=='factor' & !is.na(blah$classes),
-                        factor.repr(int2bin(as.integer(blah$splits),reverse=T)),
-                        blah$splits)
+  blah$splits[index] <- sapply(blah$splits[index], factor.repr)  
   
   
-  splits <- cbind(cutleft=paste0('<', gTree[,"split point"]), 
-                  cutright=paste0('>', gTree[,"split point"]))
+  splits <- cbind(
+    cutleft=paste0(ifelse(blah$classes=='factor' & !is.na(blah$classes),': ','<'),
+                   blah$splits), 
+    cutright=paste0(ifelse(blah$classes=='factor' & !is.na(blah$classes),
+                           ': ','>'),
+                           blah$splits))
   splits[fr$var=='<leaf>',] <- ""
   
   fr <- as.data.frame(fr, stringsAsFactors=F)

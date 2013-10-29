@@ -60,6 +60,6 @@ labelYN <- function(tr){
   nodes <- as.integer(row.names(tr$frame))
   left.child <- match(2*nodes, nodes)
   ind <- !is.na(left.child)
-  text(xy$x[ind]-0.1, xy$y[ind]-0.2*charht, '<< Yes',cex=0.6, adj=1)
-  text(xy$x[ind]+0.1, xy$y[ind]-0.2*charht, 'No >>', cex=0.6, adj=0)
+  text(xy$x[ind]-0.1, xy$y[ind]-0.2*charht, '<< Y',cex=0.6, adj=1)
+  text(xy$x[ind]+0.1, xy$y[ind]-0.2*charht, 'N >>', cex=0.6, adj=0)
 }

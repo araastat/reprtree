@@ -14,7 +14,7 @@ Description: This package implements the concept of representative trees from
     implements the d2 metric of tree closeness (close in prediction) from
     Banerjee, et al, 2012
 Depends:
-    R (>= 3.0.0),
+    R (>= 2.14.0),
     randomForest,
     tree,
     plotrix

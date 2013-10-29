@@ -27,7 +27,7 @@ plot.reprtree <- function(reptree, index = ifelse(all,NULL, 1), all=F,
   if(all){
     par(mfrow=c(nrow, ncol))
     for(i in 1:n){
-      plot(reptree[[i]], type='uniform') 
+      plot(reptree[[i]], type='uniform')
       text(reptree[[i]],adj=adj,cex=0.8, split=F,...)
       labelBG(reptree[[i]])
       labelYN(reptree[[i]])
@@ -35,7 +35,7 @@ plot.reprtree <- function(reptree, index = ifelse(all,NULL, 1), all=F,
     }
   } else {
     plot(reptree[[index]], type='uniform') 
-    text(reptree[[index]],adj=adj,split=F, cex=0.8, ...)
+    text(reptree[[index]],adj=adj,split=F, cex=0.7, digits=2, ...)
     labelBG(reptree[[index]])
     labelYN(reptree[[index]])
     if(main) title(main=paste('Tree',names(reptree)[index]))
@@ -62,4 +62,41 @@ labelYN <- function(tr){
   ind <- !is.na(left.child)
   text(xy$x[ind]-0.1, xy$y[ind]-0.2*charht, '<< Y',cex=0.6, adj=1)
   text(xy$x[ind]+0.1, xy$y[ind]-0.2*charht, 'N >>', cex=0.6, adj=0)
+}
+
+plot.tree <- function (x, y = NULL, type = c("proportional", "uniform"), ...) 
+{
+  if (inherits(x, "singlenode")) 
+    stop("cannot plot singlenode tree")
+  if (!inherits(x, "tree")) 
+    stop("not legitimate tree")
+  type <- match.arg(type)
+  uniform <- type == "uniform"
+  dev <- dev.cur()
+  if (dev == 1L) 
+    dev <- 2L
+  #assign(paste0("device", dev), uniform, envir = tree_env)
+  invisible(treepl(tree:::treeco(x, uniform), node = as.integer(row.names(x$frame)), 
+                   ...))
+}
+
+
+treepl <- function (xy, node, erase = FALSE, ...) 
+{
+  x <- xy$x
+  y <- xy$y
+  parent <- match((node%/%2L), node)
+  sibling <- match(ifelse(node%%2L, node - 1L, node + 1L), 
+                   node)
+  xx <- rbind(x, x, x[sibling], x[sibling], NA)
+  yy <- rbind(y, y[parent], y[parent], y[sibling], NA)
+  if (any(erase)) {
+    lines(c(xx[, erase]), c(yy[, erase]), col = par("bg"))
+    return(x = x[!erase], y = y[!erase])
+  }
+  plot(range(x), c(min(y)-0.5, max(y)+0.5), type = "n", axes = FALSE, xlab = "", 
+       ylab = "")
+  text(x[1L], y[1L], "|", ...)
+  lines(c(xx[, -1L]), c(yy[, -1L]), ...)
+  list(x = x, y = y)
 }

@@ -97,3 +97,8 @@ int2bin <- function(x, reverse=F){
   }
   return(out)
 }
+
+factor.repr <- function(x){
+  n <- nchar(x)
+  paste(letters[1:n][unlist(strsplit(x,''))=='1'],collapse='')
+}

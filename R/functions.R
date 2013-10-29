@@ -6,7 +6,6 @@
 #' @param rforest The randomForest object 
 #' @return An object of class \code{tree}, which has a \code{frame} and sufficient
 #'     attributes to enable plotting
-#' @S3method as tree
 as.tree <- function(gTree,rforest){
   if(is.numeric(gTree[,'split var'])) stop("labelVar=T required")
   bl <- matrix("", nrow=nrow(gTree), ncol=3)
@@ -93,6 +92,10 @@ dist.fn <- function(x, method='mismatch',...){
   return(z)
 }
 
+#' Convert integers to binary representation
+#' 
+#' @param x integer to be converted
+#' @param reverse Should the ordering be reversed
 int2bin <- function(x, reverse=F){
   y <- intToBits(x)
   yy <- paste(sapply(strsplit(paste(rev(y)),""),`[[`,2),collapse="")
@@ -104,6 +107,9 @@ int2bin <- function(x, reverse=F){
   return(out)
 }
 
+#' Represent factor splits using letters
+#' 
+#' @param x character representation of integer in "split point"
 factor.repr <- function(x){
   x <- int2bin(as.integer(x), reverse=T)
   n <- nchar(x)

@@ -1,11 +1,11 @@
 Package: reprtree
 Type: Package
 Title: Representative trees from ensembles
-Version: 0.1
+Version: 0.2
 Date: 2013-10-27
 Author: Abhijit Dasgupta <abhijit.dasgupta@nih.gov>
 Maintainer: Abhijit Dasgupta <adasgupta@araastat.com>
-License: MIT
+License: GPL-2 | GPL-3
 Description: This package implements the concept of representative trees from
     ensemble tree-based learners introduced by Banerjee, et al, (2012).
     Representative trees are, in some sense, trees in the ensemble which are on

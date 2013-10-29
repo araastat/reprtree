@@ -3,8 +3,8 @@
 \title{Plotting representative trees}
 \usage{
   plot.reprtree(reptree, index = ifelse(all, NULL, 1),
-    all = F, ncol = NULL, nrow = NULL, adj = 0.5, main = T,
-    ...)
+    all = F, ncol = NULL, nrow = NULL, adj = 0.5,
+    main = NULL, ...)
 }
 \arguments{
   \item{reptree}{An object of class \code{reprtree)}}
@@ -16,15 +16,14 @@
   plots?}
 
   \item{ncol}{The number of columns in the plot panel
-  (defaults to NULL)}
+  (default is NULL)}
 
-  \item{nrow}{The number of rows in the plot panel
-  (defaults to NULL)}
+  \item{nrow}{The number of rows in the plot panel (default
+  is NULL)}
 
   \item{adj}{}
 
-  \item{main}{Should a title be placed on the plot (default
-  TRUE)}
+  \item{main}{Title of plot (default is NULL)}
 
   \item{...}{additional arguments to pass to text.tree. In
   particular, suppress node labels using \code{label=NULL}}

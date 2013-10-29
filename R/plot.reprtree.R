@@ -6,10 +6,10 @@
 #' @param reptree An object of class \code{reprtree)}
 #' @param index The index of the reprtree object you want to plot
 #' @param all (logical) Do you want to create a panel of plots?
-#' @param ncol The number of columns in the plot panel (defaults to NULL)
-#' @param nrow The number of rows in the plot panel (defaults to NULL)
+#' @param ncol The number of columns in the plot panel (default is NULL)
+#' @param nrow The number of rows in the plot panel (default is NULL)
 #' @param adj 
-#' @param main Should a title be placed on the plot (default TRUE)
+#' @param main Title of plot (default is NULL)
 #' @param ... additional arguments to pass to text.tree. In particular, suppress node labels using \code{label=NULL}
 #' @export
 #' @S3method plot reprtree
@@ -20,7 +20,7 @@
 #' If only one tree needs to be visualized, the index of the reprtree object to
 #' be visualized can be provided.
 plot.reprtree <- function(reptree, index = ifelse(all,NULL, 1), all=F,
-                          ncol=NULL, nrow=NULL,adj = 0.5, main=T, ...){
+                          ncol=NULL, nrow=NULL,adj = 0.5, main=NULL, ...){
   require(plotrix)
   if(!is(reptree,'reprtree')) stop('Wrong class!')
   n <- length(reptree)
@@ -28,7 +28,7 @@ plot.reprtree <- function(reptree, index = ifelse(all,NULL, 1), all=F,
     par(mfrow=c(nrow, ncol))
     for(i in 1:n){
       plot(reptree[[i]], type='uniform')
-      text(reptree[[i]],adj=adj,cex=0.8, split=F,...)
+      text(reptree[[i]],adj=adj,cex=0.7, split=F,...)
       labelBG(reptree[[i]])
       labelYN(reptree[[i]])
       if(main) title(main=paste('Tree',names(reptree)[i]))
@@ -38,7 +38,7 @@ plot.reprtree <- function(reptree, index = ifelse(all,NULL, 1), all=F,
     text(reptree[[index]],adj=adj,split=F, cex=0.7, digits=2, ...)
     labelBG(reptree[[index]])
     labelYN(reptree[[index]])
-    if(main) title(main=paste('Tree',names(reptree)[index]))
+    title(main=main)
   }
 }
 
@@ -83,6 +83,7 @@ plot.tree <- function (x, y = NULL, type = c("proportional", "uniform"), ...)
 
 treepl <- function (xy, node, erase = FALSE, ...) 
 {
+  # Modified from tree:::treepl
   x <- xy$x
   y <- xy$y
   parent <- match((node%/%2L), node)

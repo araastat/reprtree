@@ -30,8 +30,13 @@ as.tree <- function(gTree,rforest){
   
   # Need to work out split points based on classes of the splitting vars
   classes <- attributes(rforest$terms)$dataClasses
-  blah <- cbind(fr$var, as.character(gTree[,'split point']), 
-                classes[fr$var])
+  blah <- data.frame(var=fr$var, splits=as.character(gTree[,'split point']), 
+                classes=classes[fr$var], stringsAsFactors=F)
+  index <- which(blah$classes=='factor' & !is.na(blah$classes))
+  blah$splits[index] <- 
+  blah$splits <- ifelse(blah$classes=='factor' & !is.na(blah$classes),
+                        factor.repr(int2bin(as.integer(blah$splits),reverse=T)),
+                        blah$splits)
   
   
   splits <- cbind(cutleft=paste0('<', gTree[,"split point"]), 
@@ -99,6 +104,7 @@ int2bin <- function(x, reverse=F){
 }
 
 factor.repr <- function(x){
+  x <- int2bin(as.integer(x), reverse=T)
   n <- nchar(x)
   paste(letters[1:n][unlist(strsplit(x,''))=='1'],collapse='')
 }

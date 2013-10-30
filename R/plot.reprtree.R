@@ -6,8 +6,7 @@
 #' @param reptree An object of class \code{reprtree)}
 #' @param index The index of the reprtree object you want to plot
 #' @param all (logical) Do you want to create a panel of plots?
-#' @param ncol The number of columns in the plot panel (default is NULL)
-#' @param nrow The number of rows in the plot panel (default is NULL)
+#' @param depth The maximum depth of the tree to be plotted. \code{depth=0} means the full tree.
 #' @param adj 
 #' @param main Title of plot (default is NULL)
 #' @param ... additional arguments to pass to text.tree. In particular, suppress node labels using \code{label=NULL}
@@ -19,26 +18,36 @@
 #' 
 #' If only one tree needs to be visualized, the index of the reprtree object to
 #' be visualized can be provided.
-plot.reprtree <- function(reptree, index = ifelse(all,NULL, 1), all=F,
-                          ncol=NULL, nrow=NULL,adj = 0.5, main=NULL, ...){
+plot.reprtree <- function(reptree,  index = ifelse(all,NULL, 1), depth=0,all=F,
+                          main=NULL,adj = 0.5,  ...){
   require(plotrix)
+  require(tree)
   if(!is(reptree,'reprtree')) stop('Wrong class!')
   n <- length(reptree)
   if(all){
     par(mfrow=c(nrow, ncol))
     for(i in 1:n){
-      plot(reptree[[i]], type='uniform')
-      text(reptree[[i]],adj=adj,cex=0.7, split=F,...)
-      labelBG(reptree[[i]])
-      labelYN(reptree[[i]])
-      if(main) title(main=paste('Tree',names(reptree)[i]))
+      if(depth>0){
+        tr <- snip.depth(reptree[[i]], depth)
+      } else {
+        tr <- reptree[[i]]
+      }
+      plot(tr, type='uniform')
+      text(tr,adj=adj,cex=0.7, split=F,...)
+      labelBG(tr)
+      labelYN(tr)
+      title(main=main)
     }
   } else {
-    plot(reptree[[index]], type='uniform') 
-    xy <- tree:::treeco(reptree[[index]], uniform=TRUE)
-    text(reptree[[index]],adj=adj,split=F, cex=0.7, digits=2, ...)
-    labelBG(reptree[[index]])
-    labelYN(reptree[[index]])
+    tr <- reptree[[index]]
+    if(depth>0){
+      tr <- snip.depth(tr, depth)
+    }
+    plot(tr, type='uniform') 
+    xy <- tree:::treeco(tr, uniform=TRUE)
+    text(tr,adj=adj,split=F, cex=0.7, digits=2, ...)
+    labelBG(tr)
+    labelYN(tr)
     title(main=main)
   }
 }
@@ -179,4 +188,16 @@ text.tree <- function (x, splits = TRUE, label = "yval", all = FALSE, pretty = N
          adj = ladj, ...)
   }
   invisible()
+}
+
+#' Snipping a tree to a particular depth
+#' 
+#' @param tr The tree to be snipped
+#' @param depth The depth at which to snip the tree
+#' @return A tree object of the specified depth
+snip.depth <- function(tr, depth){
+  require(tree)
+  nodes <- sapply(as.integer(row.names(tr$frame)), int2bin)
+  nodes.to.snip <- strtoi(nodes[nchar(nodes)==depth & tr$frame$var !='<leaf>'],2)
+  return(snip.tree(tr, nodes.to.snip))
 }

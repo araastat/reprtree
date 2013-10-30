@@ -27,27 +27,28 @@ plot.reprtree <- function(reptree, all=F, index = ifelse(all,NULL, 1), depth=0,
   n <- length(reptree)
   if(all){
     for(i in 1:n){
-      tr <- reptree[[i]]
-      if(depth>0){
-        tr <- snip.depth(reptree[[i]], depth)
-      } 
-      plot(tr, type='uniform')
-      text(tr,adj=adj,cex=0.7, split=F,...)
-      labelBG(tr)
-      labelYN(tr)
-      title(main=main)
+      plot.gTree(tr=reptree[[i]], depth=depth, main=main, adj=0.5, ...)
+#       tr <- reptree[[i]]
+#       if(depth>0){
+#         tr <- snip.depth(reptree[[i]], depth)
+#       } 
+#       plot(tr, type='uniform')
+#       text(tr,adj=adj,cex=0.7, split=F,...)
+#       labelBG(tr)
+#       labelYN(tr)
+#       title(main=main)
     }
   } else {
-    tr <- reptree[[index]]
-    if(depth>0){
-      tr <- snip.depth(tr, depth)
-    }
-    plot(tr, type='uniform') 
-    xy <- tree:::treeco(tr, uniform=TRUE)
-    text(tr,adj=adj,split=F, cex=0.7, digits=2, ...)
-    labelBG(tr)
-    labelYN(tr)
-    title(main=main)
+    plot.getTree(tr=reptree[[index]],depth=depth, main=main, adj=0.5,...)
+#     tr <- reptree[[index]]
+#     if(depth>0){
+#       tr <- snip.depth(tr, depth)
+#     }
+#     plot(tr, type='uniform') 
+#     text(tr,adj=adj,split=F, cex=0.7, digits=2, ...)
+#     labelBG(tr)
+#     labelYN(tr)
+#     title(main=main)
   }
 }
 

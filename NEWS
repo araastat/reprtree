@@ -1,0 +1,4 @@
+Changes in 0.5
+==============
+
+* Added a function plot.getTree to extract and plot a tree from a randomForest object

@@ -18,20 +18,19 @@
 #' 
 #' If only one tree needs to be visualized, the index of the reprtree object to
 #' be visualized can be provided.
-plot.reprtree <- function(reptree,  index = ifelse(all,NULL, 1), depth=0,all=F,
+plot.reprtree <- function(reptree, all=F, index = ifelse(all,NULL, 1), depth=0,
                           main=NULL,adj = 0.5,  ...){
   require(plotrix)
   require(tree)
   if(!is(reptree,'reprtree')) stop('Wrong class!')
+  reptree <- reptree[['trees']]
   n <- length(reptree)
   if(all){
-    par(mfrow=c(nrow, ncol))
     for(i in 1:n){
+      tr <- reptree[[i]]
       if(depth>0){
         tr <- snip.depth(reptree[[i]], depth)
-      } else {
-        tr <- reptree[[i]]
-      }
+      } 
       plot(tr, type='uniform')
       text(tr,adj=adj,cex=0.7, split=F,...)
       labelBG(tr)

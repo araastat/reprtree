@@ -64,6 +64,7 @@ ReprTree <- function(rforest, newdata, metric='d2'){
   trees <- lapply(as.list(index), function(i) getTree(rforest, i, labelVar=TRUE))
   names(trees) <- as.character(index)
   trees <- lapply(trees, as.tree, rforest)
-  class(trees) <- c('reprtree','list')
-  return(trees)
+  out <- list(trees=trees,D = D)
+  class(out) <- c('reprtree','list')
+  return(out)
 }

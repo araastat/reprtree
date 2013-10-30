@@ -4,6 +4,7 @@
 #' @param k The index of the tree to be plotted
 #' @param depth The depth of the tree to be plotted
 #' @param ... Additional parameters to be passed to \code{text.tree}
+#' @export
 #' @examples
 #' library(randomForest)
 #' rforest <- randomForest(Species~., data=iris, ntree=20)

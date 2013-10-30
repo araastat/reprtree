@@ -1,3 +1,4 @@
+export(plot.getTree)
 export(plot.reprtree)
 export(ReprTree)
 import(randomForest)

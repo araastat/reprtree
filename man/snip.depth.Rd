@@ -1,0 +1,18 @@
+\name{snip.depth}
+\alias{snip.depth}
+\title{Snipping a tree to a particular depth}
+\usage{
+  snip.depth(tr, depth)
+}
+\arguments{
+  \item{tr}{The tree to be snipped}
+
+  \item{depth}{The depth at which to snip the tree}
+}
+\value{
+  A tree object of the specified depth
+}
+\description{
+  Snipping a tree to a particular depth
+}
+

@@ -2,9 +2,9 @@
 \alias{plot.reprtree}
 \title{Plotting representative trees}
 \usage{
-  plot.reprtree(reptree, index = ifelse(all, NULL, 1),
-    all = F, ncol = NULL, nrow = NULL, adj = 0.5,
-    main = NULL, ...)
+  plot.reprtree(reptree, all = F,
+    index = ifelse(all, NULL, 1), depth = 0, main = NULL,
+    adj = 0.5, ...)
 }
 \arguments{
   \item{reptree}{An object of class \code{reprtree)}}
@@ -15,11 +15,8 @@
   \item{all}{(logical) Do you want to create a panel of
   plots?}
 
-  \item{ncol}{The number of columns in the plot panel
-  (default is NULL)}
-
-  \item{nrow}{The number of rows in the plot panel (default
-  is NULL)}
+  \item{depth}{The maximum depth of the tree to be plotted.
+  \code{depth=0} means the full tree.}
 
   \item{adj}{}
 

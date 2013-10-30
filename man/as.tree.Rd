@@ -2,7 +2,7 @@
 \alias{as.tree}
 \title{Convert the result of a getTree call to a format compatible with tree}
 \usage{
-  as.tree(gTree, rforest)
+  as.tree(gTree, rforest, max.depth = 3)
 }
 \arguments{
   \item{gTree}{The results of a call to \code{getTree}}

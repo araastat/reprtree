@@ -2,7 +2,7 @@ Package: reprtree
 Type: Package
 Title: Representative trees from ensembles
 Version: 0.6
-Date: 2013-10-27
+Date: 2014-10-27
 Author: Abhijit Dasgupta <abhijit.dasgupta@nih.gov>
 Maintainer: Abhijit Dasgupta <adasgupta@araastat.com>
 License: GPL-2 | GPL-3
@@ -12,7 +12,7 @@ Description: This package implements the concept of representative trees from
     average the "closest" to all the other trees in the ensemble. Several trees
     can be representative of the ensemble in general. This package currently
     implements the d2 metric of tree closeness (close in prediction) from
-    Banerjee, et al, 2012
+    Banerjee, et al (2012).
 Depends:
     R (>= 2.14.0),
     randomForest,

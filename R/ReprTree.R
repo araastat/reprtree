@@ -5,7 +5,7 @@
 #' are, in some sense, trees in the ensemble which are on average the "closest" to 
 #' all the other trees in the ensemble. Several trees can be representative of the 
 #' ensemble in general. This package currently implements the d2 metric of tree closeness
-#' (close in prediction) from Banerjee, et al
+#' (close in prediction) from Banerjee, et al.
 #' 
 #' @name reprtree-package
 #' @references M. Banerjee, Y. Ding and A-M Noone (2012) "Identifying representative

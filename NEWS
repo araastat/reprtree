@@ -2,3 +2,8 @@ Changes in 0.5
 ==============
 
 * Added a function plot.getTree to extract and plot a tree from a randomForest object
+
+Changes in 0.6
+==============
+
+* Adapted the predict function to accomodate factors where NA is a legitimate level

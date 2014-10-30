@@ -1,11 +1,11 @@
-#' Convert the result of a getTree call to a format compatible with tree
-#' 
-#' This function takes the results of a \code{randomForest::getTree} call and 
-#' converts the results to a form compatible with \code{tree}
-#' @param gTree The results of a call to \code{getTree}
-#' @param rforest The randomForest object 
-#' @return An object of class \code{tree}, which has a \code{frame} and sufficient
-#'     attributes to enable plotting
+# Convert the result of a getTree call to a format compatible with tree
+# 
+# This function takes the results of a \code{randomForest::getTree} call and 
+# converts the results to a form compatible with \code{tree}
+# @param gTree The results of a call to \code{getTree}
+# @param rforest The randomForest object 
+# @return An object of class \code{tree}, which has a \code{frame} and sufficient
+#     attributes to enable plotting
 as.tree <- function(gTree,rforest,max.depth=3){
   if(is.numeric(gTree[,'split var'])) stop("labelVar=T required")
   bl <- matrix("", nrow=nrow(gTree), ncol=3)
@@ -60,19 +60,19 @@ as.tree <- function(gTree,rforest,max.depth=3){
   return(newtr)
 }
 
-#' Compute a distance matrix between rows of a data matrix
-#' 
-#' This function takes a matrix or a data.frame, and computes the distance
-#' between the between the rows of the data matrix. It extends the function 
-#' \code{\link{dist}} by adding a new metric defined by the proportion of 
-#' mismatches between two vectors.
-#' 
-#' @param x a numeric matrix or data frame
-#' @param method the distance measure to be used. This must be one of "mismatch",
-#'      "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski".
-#'      Any unambiguous substring can be given
-#' @param ... additional arguments to be passed to the \code{dist} function
-#' @keywords dist
+# Compute a distance matrix between rows of a data matrix
+# 
+# This function takes a matrix or a data.frame, and computes the distance
+# between the between the rows of the data matrix. It extends the function 
+# \code{\link{dist}} by adding a new metric defined by the proportion of 
+# mismatches between two vectors.
+# 
+# @param x a numeric matrix or data frame
+# @param method the distance measure to be used. This must be one of "mismatch",
+#      "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski".
+#      Any unambiguous substring can be given
+# @param ... additional arguments to be passed to the \code{dist} function
+# @keywords dist
 dist.fn <- function(x, method='mismatch',...){
   METHODS <- c("euclidean", "maximum", "manhattan", "canberra", 
                "binary", "minkowski", "mismatch")
@@ -92,10 +92,10 @@ dist.fn <- function(x, method='mismatch',...){
   return(z)
 }
 
-#' Convert integers to binary representation
-#' 
-#' @param x integer to be converted
-#' @param reverse Should the ordering be reversed
+# Convert integers to binary representation
+# 
+# @param x integer to be converted
+# @param reverse Should the ordering be reversed
 int2bin <- function(x, reverse=F){
   y <- intToBits(x)
   yy <- paste(sapply(strsplit(paste(rev(y)),""),`[[`,2),collapse="")
@@ -107,28 +107,28 @@ int2bin <- function(x, reverse=F){
   return(out)
 }
 
-#' Represent factor splits using letters
-#' 
-#' @param x character representation of integer in "split point"
+# Represent factor splits using letters
+# 
+# @param x character representation of integer in "split point"
 factor.repr <- function(x){
   x <- int2bin(as.integer(x), reverse=T)
   n <- nchar(x)
   paste(letters[1:n][unlist(strsplit(x,''))=='1'],collapse='')
 }
 
-#' Alternative version of the predict function
-#' 
-#' @param object Object from which predictions will be derived
+# Alternative version of the predict function
+# 
+# @param object Object from which predictions will be derived
 predict2 <- function(object, ...){
   UseMethod('predict2')
 }
 
-#' Alternative version of predict.randomForest, from randomForest package
-#' 
-#' @description
-#' This function adapts the predict.randomForest function to accomodate the situation
-#' where factors can have NA as a legitimate level
-#' 
+# Alternative version of predict.randomForest, from randomForest package
+# 
+# @description
+# This function adapts the predict.randomForest function to accomodate the situation
+# where factors can have NA as a legitimate level
+# 
 predict2.randomForest <- function (object, newdata, type = "response", norm.votes = TRUE, 
                                    predict.all = FALSE, proximity = FALSE, nodes = FALSE, cutoff,
                                    ...) 

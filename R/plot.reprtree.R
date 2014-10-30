@@ -12,9 +12,9 @@
 #' @param ... additional arguments to pass to text.tree. In particular, suppress node labels using \code{label=NULL}
 #' @export
 #' @S3method plot reprtree
-#' @section Details
+#' @section Details:
 #' This plot function takes a \code{reprtree} object, and then plots a 
-#' single representative tree or a sequence of representative trees (using \code{all=T}.
+#' single representative tree or a sequence of representative trees (using \code{all=T}).
 #' 
 #' If only one tree needs to be visualized, the index of the reprtree object to
 #' be visualized can be provided.

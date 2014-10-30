@@ -53,7 +53,7 @@ ReprTree <- function(rforest, newdata, metric='d2'){
   if(metric!='d2') stop('invalid metric!')
   require(randomForest)
   print('Constructing distance matrix...')
-  preds <- predict(rforest, newdata=newdata, predict.all=T)
+  preds <- predict2(rforest, newdata=newdata, predict.all=T)
   preds.indiv <- preds$individual
   d <- dist.fn(t(preds.indiv), method=ifelse(rforest$type=='classification',
                                              'mismatch',

@@ -1,7 +1,7 @@
 Package: reprtree
 Type: Package
 Title: Representative trees from ensembles
-Version: 0.5
+Version: 0.6
 Date: 2013-10-27
 Author: Abhijit Dasgupta <abhijit.dasgupta@nih.gov>
 Maintainer: Abhijit Dasgupta <adasgupta@araastat.com>
@@ -19,8 +19,3 @@ Depends:
     tree,
     plotrix
 Enhances: randomForest
-Collate:
-    'ReprTree.R'
-    'functions.R'
-    'plot.reprtree.R'
-    'plot.getTree.R'

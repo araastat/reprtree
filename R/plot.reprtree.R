@@ -27,7 +27,7 @@ plot.reprtree <- function(reptree, all=F, index = ifelse(all,NULL, 1), depth=0,
   n <- length(reptree)
   if(all){
     for(i in 1:n){
-      plot.gTree(tr=reptree[[i]], depth=depth, main=main, adj=0.5, ...)
+      plot.getTree(tr=reptree[[i]], depth=depth, main=main, adj=0.5, ...)
 #       tr <- reptree[[i]]
 #       if(depth>0){
 #         tr <- snip.depth(reptree[[i]], depth)

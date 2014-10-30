@@ -14,10 +14,10 @@
 #' @docType package
 #' @name reprtree
 #' @examples
-#' library(randomForest)
-#' library(tree)
+#' library(reprtree)
 #' rforest <- randomForest(Species~., data=iris)
 #' reptree <- ReprTree(rforest, iris, metric='d2')
+#' plot(reptree, index=1)
 NULL
 
 

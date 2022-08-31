@@ -6,6 +6,6 @@ if(length(to.install)>0) install.packages(to.install)
 
 library(devtools)
 if(!('reprtree' %in% installed.packages())){
-  install_github('araastat','reprtree')
+  install_github('araastat/reprtree')
 }
 for(p in c(cran.packages, 'reprtree')) eval(substitute(library(pkg), list(pkg=p)))

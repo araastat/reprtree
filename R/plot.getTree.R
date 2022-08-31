@@ -5,18 +5,31 @@
 #' @param k The index of the tree to be plotted
 #' @param depth The depth of the tree to be plotted
 #' @param main The title to put on the graph
+#' @param caret using caret T or F
 #' @param ... Additional parameters to be passed to \code{text.tree}
 #' @export
 #' @examples
 #' library(randomForest)
 #' rforest <- randomForest(Species~., data=iris, ntree=20)
 #' plot.getTree(rforest, k=3, depth=4)
-plot.getTree <- function(rforest=NULL,tr=NULL,k=1, depth=0,main=NULL, ...){
+plot.getTree <- function(rforest=NULL,tr=NULL,k=1, depth=0,main=NULL,caret=F, ...){
   require(randomForest)
+  if(caret){
+    mod<-rforest
+    rforest<-mod$finalModel
+  }
+  
   if(is.null(rforest) && is.null(tr))stop('One of a random forest object or a tree object must be input')
   if(!is.null(rforest)){
     gTree <- getTree(rforest, k=k, labelVar=TRUE)
-    x <- as.tree(gTree, rforest)
+    
+    if(caret){
+      x <- as.tree(gTree, mod, caret=T)
+    }
+    else{
+      x <- as.tree(gTree, rforest)
+    }
+    
   } else {
     x <- tr
   }

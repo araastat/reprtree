@@ -2,11 +2,18 @@
 # 
 # This function takes the results of a \code{randomForest::getTree} call and 
 # converts the results to a form compatible with \code{tree}
-# @param gTree The results of a call to \code{getTree}
-# @param rforest The randomForest object 
+#' @param gTree The results of a call to \code{getTree}
+#' @param rforest The randomForest object 
+#' @param caret using caret T or F
 # @return An object of class \code{tree}, which has a \code{frame} and sufficient
 #     attributes to enable plotting
-as.tree <- function(gTree,rforest,max.depth=3){
+as.tree <- function(gTree,rforest,max.depth=3,caret=FALSE){
+
+  if(caret){
+    mod<-rforest
+    rforest<-mod$finalModel
+  }
+
   if(is.numeric(gTree[,'split var'])) stop("labelVar=T required")
   bl <- matrix("", nrow=nrow(gTree), ncol=3)
   for(row in 1:nrow(gTree)){
@@ -28,7 +35,12 @@ as.tree <- function(gTree,rforest,max.depth=3){
   fr$yval <- gTree[,'prediction']
   
   # Need to work out split points based on classes of the splitting vars
-  classes <- attributes(rforest$terms)$dataClasses
+   if(caret){
+    classes <- attr(terms(mod), "dataClasses")
+  } else {
+    classes <- attributes(rforest$terms)$dataClasses
+  }
+  
   blah <- data.frame(var=fr$var, splits=as.character(gTree[,'split point']), 
                 classes=classes[fr$var], stringsAsFactors=F)
   index <- which(blah$classes=='factor' & !is.na(blah$classes))

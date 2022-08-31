@@ -3,6 +3,8 @@
 S3method(plot,getTree)
 S3method(plot,reprtree)
 S3method(text,tree)
+export(as.tree)
+export(plot.getTree)
 export(ReprTree)
 import(randomForest)
 import(tree)
